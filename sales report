@@ -1,0 +1,8 @@
+SELECT 
+    Region,
+    FORMAT(OrderDate, 'yyyy-MM') AS Month,
+    SUM(TotalAmount) AS TotalSales
+FROM SalesOrders
+WHERE OrderDate >= DATEADD(MONTH, -6, GETDATE())  -- Last 6 months
+GROUP BY Region, FORMAT(OrderDate, 'yyyy-MM')
+ORDER BY Region, Month;
